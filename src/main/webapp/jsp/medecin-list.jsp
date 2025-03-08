@@ -34,7 +34,7 @@
 
         <!-- Bouton Ajouter un médecin -->
         <div class="d-flex justify-content-end mb-3">
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medecinModal">
+            <button class="btn btn-primary" id="btn-add">
                 <i class="bi bi-person-plus-fill"></i> Ajouter un médecin
             </button>
         </div>
@@ -61,12 +61,15 @@
                                 <td><%= m.getPrenom() %></td>
                                 <td><%= m.getGrade() %></td>
                                 <td>
-                                    <button class="btn btn-sm btn-warning btn-edit" data-id="<%= m.getCodemed() %>"
-                                            data-nom="<%= m.getNom() %>" data-prenom="<%= m.getPrenom() %>" 
+                                    <button class="btn btn-sm btn-warning btn-edit" 
+                                            data-id="<%= m.getCodemed() %>"
+                                            data-nom="<%= m.getNom() %>" 
+                                            data-prenom="<%= m.getPrenom() %>" 
                                             data-grade="<%= m.getGrade() %>">
                                         <i class="bi bi-pencil-fill"></i> Modifier
                                     </button>
-                                    <button class="btn btn-sm btn-danger btn-delete" data-id="<%= m.getCodemed() %>">
+                                    <button class="btn btn-sm btn-danger btn-delete" 
+                                            data-id="<%= m.getCodemed() %>">
                                         <i class="bi bi-trash-fill"></i> Supprimer
                                     </button>
                                 </td>
@@ -85,7 +88,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitle">Ajouter un Médecin</h5>
+                    <h5 class="modal-title">Ajouter un Médecin</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
@@ -141,13 +144,14 @@
 
     <!-- Scripts pour gérer les modals -->
     <script>
+    document.addEventListener("DOMContentLoaded", function() {
         document.querySelectorAll('.btn-edit').forEach(button => {
             button.addEventListener('click', function() {
                 document.getElementById('codemed').value = this.dataset.id;
                 document.getElementById('nom').value = this.dataset.nom;
                 document.getElementById('prenom').value = this.dataset.prenom;
                 document.getElementById('grade').value = this.dataset.grade;
-                document.getElementById('modalTitle').innerText = 'Modifier un Médecin';
+                document.querySelector('.modal-title').innerText = 'Modifier un Médecin';
                 new bootstrap.Modal(document.getElementById('medecinModal')).show();
             });
         });
@@ -158,6 +162,26 @@
                 new bootstrap.Modal(document.getElementById('deleteModal')).show();
             });
         });
+
+        document.getElementById('btn-add').addEventListener('click', function() {
+            document.querySelector('.modal-title').innerText = 'Ajouter un Médecin';
+            document.getElementById('codemed').value = "";
+            document.getElementById('nom').value = "";
+            document.getElementById('prenom').value = "";
+            document.getElementById('grade').value = "";
+            new bootstrap.Modal(document.getElementById('medecinModal')).show();
+        });
+
+        // Fermer automatiquement les alertes après 2 secondes
+        setTimeout(function() {
+            let alerts = document.querySelectorAll(".alert");
+            alerts.forEach(alert => {
+                let bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            });
+        }, 2000);
+    });
+
     </script>
 </body>
 </html>

@@ -8,52 +8,73 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class MedecinDAO {
-    public void save(Medecin medecin) {
-        Transaction transaction = null;
+    public boolean save(Medecin medecin) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            session.save(medecin);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
-            e.printStackTrace();
+            Transaction transaction = session.beginTransaction();
+            try {
+                session.save(medecin);
+                transaction.commit();
+                return true;
+            } catch (Exception e) {
+                transaction.rollback();
+                e.printStackTrace();
+                return false;
+            }
         }
     }
 
     public List<Medecin> getAll() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery("from Medecin", Medecin.class).list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
     public Medecin getById(int id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.get(Medecin.class, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
-    public void update(Medecin medecin) {
-        Transaction transaction = null;
+    public boolean update(Medecin medecin) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            session.update(medecin);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
-            e.printStackTrace();
+            Transaction transaction = session.beginTransaction();
+            try {
+                session.update(medecin);
+                transaction.commit();
+                return true;
+            } catch (Exception e) {
+                transaction.rollback();
+                e.printStackTrace();
+                return false;
+            }
         }
     }
 
-    public void delete(int id) {
+    public boolean delete(Long codemed) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            Medecin medecin = session.get(Medecin.class, id);
-            if (medecin != null) session.delete(medecin);
-            transaction.commit();
+            Medecin medecin = session.get(Medecin.class, codemed);
+
+            if (medecin != null) {
+                session.remove(medecin);
+                transaction.commit();
+                return true;
+            } else {
+                if (transaction != null) transaction.rollback();
+                return false;
+            }
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
+            return false;
         }
     }
+
 }
