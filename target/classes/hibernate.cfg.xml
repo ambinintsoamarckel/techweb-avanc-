@@ -1,0 +1,52 @@
+<!DOCTYPE hibernate-configuration PUBLIC  
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"  
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"> 
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- JDBC Database connection settings -->
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+
+        <property name="connection.url">jdbc:mysql://localhost:3306/gestionvisitesmedicales?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Paris</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">root</property>
+
+        <!-- dbcp connection pool configuration -->
+        <property name="hibernate.dbcp.initialSize">5</property>
+        <!--property name="hibernate.dbcp.maxTotal">20</property>
+        <property name="hibernate.dbcp.maxIdle">10</property>
+        <property name="hibernate.dbcp.minIdle">5</property>
+        <property name="hibernate.dbcp.maxWaitMillis">-1</property-->
+		
+		<!-- Select our SQL dialect -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.connection.pool_size">10</property>
+		<property name="hibernate.connection.autocommit">true</property>
+		
+		<!-- Echo the SQL to stdout -->
+
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.use_sql_comments">true</property>
+        <property name="hibernate.generate_statistics">true</property>
+
+
+
+        <!-- Set the current session context -->
+		<property name="current_session_context_class">thread</property>
+		<!-- Set the cache provider -->
+
+
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hbm2ddl.auto">create</property>
+
+
+		<!-- Enities to map -->
+        <mapping class="com.mycompany.visitesmedical.models.Medecin" />
+        <mapping class="com.mycompany.visitesmedical.models.Patient" />
+        <mapping class="com.mycompany.visitesmedical.models.Visiter" />
+		<!-- mapping class="com.mycompany.tennis.core.entity.Tournoi" /-->
+
+    </session-factory>
+
+</hibernate-configuration>

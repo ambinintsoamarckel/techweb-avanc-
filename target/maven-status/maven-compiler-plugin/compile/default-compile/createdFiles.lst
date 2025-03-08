@@ -1,0 +1,10 @@
+com\mycompany\visitesmedical\models\Medecin.class
+com\mycompany\visitesmedical\HibernateUtil.class
+com\mycompany\visitesmedical\dao\VisiterDAO.class
+com\mycompany\visitesmedical\servlets\MedecinServlet.class
+com\mycompany\visitesmedical\JakartaRestConfiguration.class
+com\mycompany\visitesmedical\dao\PatientDAO.class
+com\mycompany\visitesmedical\models\Patient.class
+com\mycompany\visitesmedical\dao\MedecinDAO.class
+com\mycompany\visitesmedical\models\Visiter.class
+com\mycompany\visitesmedical\resources\JakartaEE10Resource.class
