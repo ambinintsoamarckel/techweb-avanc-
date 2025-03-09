@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.mycompany.visitesmedical.models.Medecin" %>
 <jsp:useBean id="medecin" scope="request" type="com.mycompany.visitesmedical.models.Medecin"/>
-
+<%@ include file="includes/navbar.jsp" %>
 <html>
 <head>
     <title>Formulaire Médecin</title>
@@ -9,6 +9,7 @@
     <script src="<%= request.getContextPath() %>/assets/js/bootstrap.bundle.min.js" defer></script>
 </head>
 <body class="container mt-5">
+
     <div class="card shadow-sm p-4">
         <%
             if (medecin == null || medecin.getCodemed() == null) {
