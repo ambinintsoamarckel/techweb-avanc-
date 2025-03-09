@@ -47,6 +47,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<%= request.getContextPath() %>/patient"><i class="bi bi-people"></i> Patients</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%= request.getContextPath() %>/visiter"><i class="bi bi-people"></i> Visites</a>
+                    </li>
                 </ul>
             </div>
         </div>

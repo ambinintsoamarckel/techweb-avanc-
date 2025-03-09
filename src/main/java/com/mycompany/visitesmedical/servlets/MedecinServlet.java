@@ -95,6 +95,9 @@ public class MedecinServlet extends HttpServlet {
                 } catch (NumberFormatException e) {
                     session.setAttribute("errorMessage", "ID invalide.");
                 }
+                catch (Exception e) {
+                    session.setAttribute("errorMessage", "Erreur du serveur.");
+                }
             }
             response.sendRedirect("medecin");
             return;
@@ -113,6 +116,9 @@ public class MedecinServlet extends HttpServlet {
             response.sendRedirect("medecin");
             return;
         }
+        catch (Exception e) {
+            session.setAttribute("errorMessage", "Erreur du serveur.");
+        }
 
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
@@ -123,11 +129,13 @@ public class MedecinServlet extends HttpServlet {
 
         if (codemed == 0) {
             success = medecinDAO.save(medecin);
-            session.setAttribute("successMessage", success ? "Médecin ajouté avec succès !" : "Erreur lors de l'ajout du médecin.");
+            if (success)session.setAttribute("successMessage", "Médecin ajouté avec succès !" );
+            else session.setAttribute("errorMessage",  "Erreur lors de l'ajout du médecin.");
         } else {
             medecin.setCodemed(codemed);
             success = medecinDAO.update(medecin);
-            session.setAttribute("successMessage", success ? "Médecin mis à jour avec succès !" : "Erreur lors de la mise à jour du médecin.");
+            if (success)session.setAttribute("successMessage", "Médecin mis à jour avec succès !" );
+            else session.setAttribute("errorMessage", "Erreur lors de la mise à jour du médecin.");
         }
 
         response.sendRedirect("medecin");

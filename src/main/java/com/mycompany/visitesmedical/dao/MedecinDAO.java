@@ -32,7 +32,7 @@ public class MedecinDAO {
         }
     }
 
-    public Medecin getById(int id) {
+    public Medecin getById(long id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.get(Medecin.class, id);
         } catch (Exception e) {

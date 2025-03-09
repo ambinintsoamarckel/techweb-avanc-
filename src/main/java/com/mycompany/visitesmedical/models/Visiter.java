@@ -1,39 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.visitesmedical.models;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- *
- * @author Lucia
+ * Représente une visite médicale entre un patient et un médecin
  */
-
 @Entity
 @Table(name = "visiter")
-public class Visiter {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@IdClass(VisiterId.class) // Définition de la clé primaire composite
+public class Visiter implements Serializable {
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "codemed", nullable = false)
     private Medecin medecin;
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "codepat", nullable = false)
     private Patient patient;
 
+    @Id
     @Temporal(TemporalType.DATE)
     private Date date;
 
-    // Constructeur par défaut
+    // Constructeurs
     public Visiter() {}
 
-    // Constructeur avec paramètres
     public Visiter(Medecin medecin, Patient patient, Date date) {
         this.medecin = medecin;
         this.patient = patient;
@@ -41,9 +36,6 @@ public class Visiter {
     }
 
     // Getters et Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
     public Medecin getMedecin() { return medecin; }
     public void setMedecin(Medecin medecin) { this.medecin = medecin; }
 
@@ -53,4 +45,3 @@ public class Visiter {
     public Date getDate() { return date; }
     public void setDate(Date date) { this.date = date; }
 }
-
