@@ -23,6 +23,7 @@ public class VisiterDAO {
             }
         }
     }
+    
     public Visiter getById(VisiterId id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.get(Visiter.class, id);
@@ -40,7 +41,19 @@ public class VisiterDAO {
             return null;
         }
     }
-
+    public List<Visiter> getByMedecinAndPatient(Long codemed, Long codepat) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery(
+                    "from Visiter where medecin.codemed = :codemed and patient.codepat = :codepat",
+                    Visiter.class)
+                    .setParameter("codemed", codemed)
+                    .setParameter("codepat", codepat)
+                    .list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     public List<Visiter> getByMedecin(Long codemed) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery("from Visiter where medecin.codemed = :codemed", Visiter.class)
