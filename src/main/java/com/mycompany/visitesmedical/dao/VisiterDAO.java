@@ -32,9 +32,10 @@ public class VisiterDAO {
             return null;
         }
     }
+
     public List<Visiter> getAll() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Visiter order by date desc", Visiter.class).list();
+            return session.createQuery("from Visiter order by dateTime desc", Visiter.class).list();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -44,7 +45,7 @@ public class VisiterDAO {
     public List<Visiter> getByMedecinAndPatient(Long codemed, Long codepat) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery(
-                "from Visiter where medecin.codemed = :codemed and patient.codepat = :codepat order by date desc",
+                "from Visiter where medecin.codemed = :codemed and patient.codepat = :codepat order by dateTime desc",
                 Visiter.class)
                 .setParameter("codemed", codemed)
                 .setParameter("codepat", codepat)
@@ -57,7 +58,7 @@ public class VisiterDAO {
 
     public List<Visiter> getByMedecin(Long codemed) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Visiter where medecin.codemed = :codemed order by date desc", Visiter.class)
+            return session.createQuery("from Visiter where medecin.codemed = :codemed order by dateTime desc", Visiter.class)
                 .setParameter("codemed", codemed)
                 .list();
         } catch (Exception e) {
@@ -68,7 +69,7 @@ public class VisiterDAO {
 
     public List<Visiter> getByPatient(Long codepat) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Visiter where patient.codepat = :codepat order by date desc", Visiter.class)
+            return session.createQuery("from Visiter where patient.codepat = :codepat order by dateTime desc", Visiter.class)
                 .setParameter("codepat", codepat)
                 .list();
         } catch (Exception e) {

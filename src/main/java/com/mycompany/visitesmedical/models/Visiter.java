@@ -2,7 +2,7 @@ package com.mycompany.visitesmedical.models;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Représente une visite médicale entre un patient et un médecin
@@ -23,16 +23,15 @@ public class Visiter implements Serializable {
     private Patient patient;
 
     @Id
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    private LocalDateTime dateTime; // Changement ici
 
     // Constructeurs
     public Visiter() {}
 
-    public Visiter(Medecin medecin, Patient patient, Date date) {
+    public Visiter(Medecin medecin, Patient patient, LocalDateTime dateTime) {
         this.medecin = medecin;
         this.patient = patient;
-        this.date = date;
+        this.dateTime = dateTime.withSecond(0).withNano(0);
     }
 
     // Getters et Setters
@@ -42,6 +41,6 @@ public class Visiter implements Serializable {
     public Patient getPatient() { return patient; }
     public void setPatient(Patient patient) { this.patient = patient; }
 
-    public Date getDate() { return date; }
-    public void setDate(Date date) { this.date = date; }
+    public LocalDateTime getDateTime() { return dateTime; }
+    public void setDateTime(LocalDateTime dateTime) {     this.dateTime = dateTime.withSecond(0).withNano(0); }
 }
