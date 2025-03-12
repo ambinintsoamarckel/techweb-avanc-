@@ -4,7 +4,9 @@ import com.mycompany.visitesmedical.models.Patient;
 import com.mycompany.visitesmedical.utils.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
+import java.util.Collections;
 import java.util.List;
 
 public class PatientDAO {
@@ -76,4 +78,38 @@ public class PatientDAO {
             return false;
         }
     }
+    
+    /**
+     * Recherche des patients par nom ou codepat.
+     * @param filter "nom" ou "codepat"
+     * @param value valeur à rechercher
+     * @return Liste des patients correspondants
+     */
+    public List<Patient> getByFilter(String critere, String valeur) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql;
+            Query query;
+
+            if ("codepat".equals(critere)) {
+                // Si le critère est l'ID (Long), on utilise "=" au lieu de LIKE
+                hql = "FROM Patient WHERE " + critere + " = :valeur";
+                query = session.createQuery(hql, Patient.class);
+                query.setParameter("valeur", Long.parseLong(valeur)); // Conversion en Long
+            } else {
+                // Pour les autres champs (nom, prénom...), on peut utiliser LIKE
+                hql = "FROM Patient WHERE " + critere + " LIKE :valeur";
+                query = session.createQuery(hql, Patient.class);
+                query.setParameter("valeur", "%" + valeur + "%");
+            }
+
+            return query.getResultList();
+        } catch (NumberFormatException e) {
+            System.out.println("Erreur de conversion : " + e.getMessage());
+            return this.getAll() ;// Retourne une liste vide si conversion échoue
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+
 }
