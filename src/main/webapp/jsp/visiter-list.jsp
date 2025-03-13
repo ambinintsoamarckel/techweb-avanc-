@@ -69,7 +69,7 @@ if (visites == null) visites = new ArrayList<>();
     <div class="row mb-3">
         <div class="col-md-5">
             <select id="patientSelect" class="form-select">
-                <option value="">Sélectionner un patient</option>
+                <option value="">Tout les patients</option>
                 <% for (Patient p : patients) { %>
                     <option value="<%= p.getCodepat() %>"
                         <%= (patientParam != null && patientParam.equals(p.getCodepat())) ? "selected" : "" %>>
@@ -80,7 +80,7 @@ if (visites == null) visites = new ArrayList<>();
         </div>
         <div class="col-md-5">
             <select id="medecinSelect" class="form-select">
-                <option value="">Sélectionner un médecin</option>
+                <option value="">Tout les médecins</option>
                 <% for (Medecin m : medecins) { %>
                     <option value="<%= m.getCodemed() %>"
                         <%= (medecinParam != null && medecinParam.equals(m.getCodemed())) ? "selected" : "" %>>
