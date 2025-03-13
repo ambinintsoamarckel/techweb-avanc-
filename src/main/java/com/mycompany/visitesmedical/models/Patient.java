@@ -7,8 +7,7 @@ import java.util.Objects;
 @Table(name = "patient")
 public class Patient {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codepat;
+    private String codepat;
 
     private String nom;
     private String prenom;
@@ -19,16 +18,17 @@ public class Patient {
     public Patient() {}
 
     // Constructeur avec paramètres
-    public Patient(String nom, String prenom, String sexe, String adresse) {
+    public Patient(String codepat,String nom, String prenom, String sexe, String adresse) {
         this.nom = nom;
+        this.codepat =codepat;
         this.prenom = prenom;
         this.sexe = sexe;
         this.adresse = adresse;
     }
 
     // Getters et Setters
-    public Long getCodepat() { return codepat; }
-    public void setCodepat(Long codepat) { this.codepat = codepat; }
+    public String getCodepat() { return codepat; }
+    public void setCodepat(String codepat) { this.codepat = codepat; }
 
     public String getNom() { return nom; }
     public void setNom(String nom) { this.nom = nom; }

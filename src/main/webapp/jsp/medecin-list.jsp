@@ -138,7 +138,10 @@
                 </div>
                 <div class="modal-body">
                     <form action="medecin" method="post">
-                        <input type="hidden" name="codemed" id="codemed">
+                     	<div class="mb-3">
+                     	<label class="form-label">Code Médecin</label>
+                        <input type="text" name="codemed" id="codemed"  class="form-control" required>
+                        </div>
                         <div class="mb-3">
                             <label class="form-label">Nom</label>
                             <input type="text" name="nom" id="nom" class="form-control" required>

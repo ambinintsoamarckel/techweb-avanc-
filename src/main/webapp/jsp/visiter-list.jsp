@@ -10,8 +10,8 @@
 List<Patient> patients = (List<Patient>) request.getAttribute("patients");
 List<Medecin> medecins = (List<Medecin>) request.getAttribute("medecins");
 List<Visiter> visites = (List<Visiter>) request.getAttribute("listVisites");
-Long patientParam = (Long)request.getAttribute("patientParam");
-Long medecinParam = (Long)request.getAttribute("medecinParam");
+String patientParam = (String)request.getAttribute("patientParam");
+String medecinParam = (String)request.getAttribute("medecinParam");
 
 
 if (patients == null) patients = new ArrayList<>();
@@ -63,6 +63,7 @@ if (visites == null) visites = new ArrayList<>();
     </nav>
 
     <div class="container mt-4">
+
         <h1 class="text-center text-primary mt-5 mb-5"><i class="bi bi-calendar-check"></i> Visites Médicales</h1>
 
  <!-- Filtres -->
@@ -83,7 +84,7 @@ if (visites == null) visites = new ArrayList<>();
                 <option value="">Tout les médecins</option>
                 <% for (Medecin m : medecins) { %>
                     <option value="<%= m.getCodemed() %>"
-                        <%= (medecinParam != null && medecinParam.equals(m.getCodemed())) ? "selected" : "" %>>
+                        <%= (medecinParam != null && medecinParam.equals(m.getCodemed()) ? "selected" : "" %>>
                         <%= m.getNom() %> <%= m.getPrenom() %>
                     </option>
                 <% } %>

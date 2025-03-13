@@ -32,7 +32,7 @@ public class MedecinDAO {
         }
     }
 
-    public Medecin getById(long id) {
+    public Medecin getById(String id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.get(Medecin.class, id);
         } catch (Exception e) {
@@ -56,7 +56,7 @@ public class MedecinDAO {
         }
     }
 
-    public boolean delete(Long codemed) {
+    public boolean delete(String codemed) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();

@@ -12,7 +12,7 @@ public class TestHibernate {
         Transaction transaction = session.beginTransaction();
 
         // Insérer un médecin
-        Medecin medecin = new Medecin("Dr Dupont"," Paul", "Cardiologie");
+        Medecin medecin = new Medecin("MED1","Dr Dupont"," Paul", "Cardiologie");
         session.save(medecin);
 
         // Valider la transaction

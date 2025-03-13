@@ -8,25 +8,25 @@ import java.util.Objects;
  * Représente la clé primaire composite pour la table "visiter"
  */
 public class VisiterId implements Serializable {
-    private Long medecin;
-    private Long patient;
+    private String medecin;
+    private String patient;
     private LocalDateTime dateTime; // Changement ici
 
     // Constructeurs
     public VisiterId() {}
 
-    public VisiterId(Long medecin, Long patient, LocalDateTime dateTime) {
+    public VisiterId(String medecin, String patient, LocalDateTime dateTime) {
         this.medecin = medecin;
         this.patient = patient;
         this.dateTime = dateTime;
     }
 
     // Getters et Setters (optionnels selon besoin)
-    public Long getMedecin() { return medecin; }
-    public void setMedecin(Long medecin) { this.medecin = medecin; }
+    public String getMedecin() { return medecin; }
+    public void setMedecin(String medecin) { this.medecin = medecin; }
 
-    public Long getPatient() { return patient; }
-    public void setPatient(Long patient) { this.patient = patient; }
+    public String getPatient() { return patient; }
+    public void setPatient(String patient) { this.patient = patient; }
 
     public LocalDateTime getDateTime() { return dateTime; }
     public void setDateTime(LocalDateTime dateTime) { this.dateTime = dateTime; }

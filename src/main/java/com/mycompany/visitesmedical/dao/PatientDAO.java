@@ -34,7 +34,7 @@ public class PatientDAO {
         }
     }
 
-    public Patient getById(Long id) {
+    public Patient getById(String id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.get(Patient.class, id);
         } catch (Exception e) {
@@ -58,7 +58,7 @@ public class PatientDAO {
         }
     }
 
-    public boolean delete(Long codepat) {
+    public boolean delete(String codepat) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
@@ -90,17 +90,12 @@ public class PatientDAO {
             String hql;
             Query query;
 
-            if ("codepat".equals(critere)) {
-                // Si le critère est l'ID (Long), on utilise "=" au lieu de LIKE
-                hql = "FROM Patient WHERE " + critere + " = :valeur";
-                query = session.createQuery(hql, Patient.class);
-                query.setParameter("valeur", Long.parseLong(valeur)); // Conversion en Long
-            } else {
+       
                 // Pour les autres champs (nom, prénom...), on peut utiliser LIKE
                 hql = "FROM Patient WHERE " + critere + " LIKE :valeur";
                 query = session.createQuery(hql, Patient.class);
                 query.setParameter("valeur", "%" + valeur + "%");
-            }
+            
 
             return query.getResultList();
         } catch (NumberFormatException e) {

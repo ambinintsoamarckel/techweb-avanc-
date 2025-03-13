@@ -42,7 +42,7 @@ public class VisiterDAO {
         }
     }
 
-    public List<Visiter> getByMedecinAndPatient(Long codemed, Long codepat) {
+    public List<Visiter> getByMedecinAndPatient(String codemed, String codepat) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery(
                 "from Visiter where medecin.codemed = :codemed and patient.codepat = :codepat order by dateTime desc",
@@ -56,7 +56,7 @@ public class VisiterDAO {
         }
     }
 
-    public List<Visiter> getByMedecin(Long codemed) {
+    public List<Visiter> getByMedecin(String codemed) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery("from Visiter where medecin.codemed = :codemed order by dateTime desc", Visiter.class)
                 .setParameter("codemed", codemed)
@@ -67,7 +67,7 @@ public class VisiterDAO {
         }
     }
 
-    public List<Visiter> getByPatient(Long codepat) {
+    public List<Visiter> getByPatient(String codepat) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery("from Visiter where patient.codepat = :codepat order by dateTime desc", Visiter.class)
                 .setParameter("codepat", codepat)

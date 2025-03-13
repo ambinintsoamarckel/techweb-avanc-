@@ -54,15 +54,15 @@ public class VisiterServlet extends HttpServlet {
 
                     try {
                         if (patientParam != null && !patientParam.isEmpty() && medecinParam != null && !medecinParam.isEmpty()) {
-                            listVisites = visiterDAO.getByMedecinAndPatient(Long.parseLong(patientParam), Long.parseLong(medecinParam));
-                            request.setAttribute("medecinParam", Long.parseLong(medecinParam));
-                            request.setAttribute("patientParam",Long.parseLong(patientParam));
+                            listVisites = visiterDAO.getByMedecinAndPatient(patientParam, medecinParam);
+                            request.setAttribute("medecinParam", medecinParam);
+                            request.setAttribute("patientParam",patientParam);
                         } else if (patientParam != null && !patientParam.isEmpty()) {
-                            listVisites = visiterDAO.getByPatient(Long.parseLong(patientParam));
-                            request.setAttribute("patientParam",Long.parseLong(patientParam));
+                            listVisites = visiterDAO.getByPatient(patientParam);
+                            request.setAttribute("patientParam",patientParam);
                         } else if (medecinParam != null && !medecinParam.isEmpty()) {
-                            listVisites = visiterDAO.getByMedecin(Long.parseLong(medecinParam));
-                            request.setAttribute("medecinParam", Long.parseLong(medecinParam));
+                            listVisites = visiterDAO.getByMedecin(medecinParam);
+                            request.setAttribute("medecinParam", medecinParam);
                         }
                     } catch (Exception e) {
                         request.getSession().setAttribute("errorMessage", "Erreur lors du filtrage : " + e.getMessage());
@@ -96,8 +96,8 @@ public class VisiterServlet extends HttpServlet {
                 try {
                     System.out.println("\n\n\n" + request.getParameter("codemed") + " " + request.getParameter("codepat") + " " + request.getParameter("dateVisite"));
 
-                    Long codemed = Long.parseLong(request.getParameter("codemed"));
-                    Long codepat = Long.parseLong(request.getParameter("codepat"));
+                    String codemed = request.getParameter("codemed");
+                    String codepat = request.getParameter("codepat");
                     String dateStr = request.getParameter("dateV");
                     LocalDateTime date = LocalDateTime.parse(dateStr, DATE_FORMATTER);
 
@@ -112,13 +112,13 @@ public class VisiterServlet extends HttpServlet {
             } 
             else if ("update".equals(action)) {
                 try {
-                    Long oldCodemed = Long.parseLong(request.getParameter("oldCodemed"));
-                    Long oldCodepat = Long.parseLong(request.getParameter("oldCodepat"));
+                    String oldCodemed = request.getParameter("oldCodemed");
+                    String oldCodepat = request.getParameter("oldCodepat");
                     String oldDateStr = request.getParameter("oldDateVisite");
                     LocalDateTime oldDate = LocalDateTime.parse(oldDateStr, DATE_FORMATTER);
 
-                    Long newCodemed = Long.parseLong(request.getParameter("medecin"));
-                    Long newCodepat = Long.parseLong(request.getParameter("patient"));
+                    String newCodemed =request.getParameter("medecin");
+                    String newCodepat =request.getParameter("patient");
 
 
                     Medecin newMedecin = medecinDAO.getById(newCodemed);
@@ -151,8 +151,8 @@ public class VisiterServlet extends HttpServlet {
             }
             else { // Ajout d'une nouvelle visite
                 try {
-                    Long codemed = Long.parseLong(request.getParameter("medecin"));
-                    Long codepat = Long.parseLong(request.getParameter("patient"));
+                    String codemed = request.getParameter("medecin");
+                    String codepat = request.getParameter("patient");
                     LocalDateTime date = LocalDateTime.now(); // Date actuelle
 
                     Medecin medecin = medecinDAO.getById(codemed);

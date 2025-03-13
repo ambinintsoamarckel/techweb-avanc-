@@ -179,7 +179,10 @@
                 </div>
                 <div class="modal-body">
                     <form action="patient" method="post">
-                        <input type="hidden" id="codepat" name="codepat">
+                        <div class="mb-3">
+                        <label class="form-label">Code Patient</label>
+                        <input type="text" id="codepat" name="codepat"  class="form-control" required>
+                        </div>
                         <div class="mb-3">
                             <label class="form-label">Nom</label>
                             <input type="text" id="nom" name="nom" class="form-control" required>

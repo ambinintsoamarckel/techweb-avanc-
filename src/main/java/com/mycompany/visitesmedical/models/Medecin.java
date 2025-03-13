@@ -14,8 +14,7 @@ import jakarta.persistence.*;
 @Table(name = "medecin")
 public class Medecin {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codemed;
+    private String codemed;
 
     @Column(nullable = false)
     private String nom;
@@ -27,15 +26,16 @@ public class Medecin {
     public Medecin() {}
 
     // Constructeur avec paramètres
-    public Medecin(String nom, String prenom, String grade) {
+    public Medecin(String codemed,String nom, String prenom, String grade) {
         this.nom = nom;
         this.prenom = prenom;
         this.grade = grade;
+        this.codemed = codemed;
     }
 
     // Getters et Setters
-    public Long getCodemed() { return codemed; }
-    public void setCodemed(Long codemed) { this.codemed = codemed; }
+    public String getCodemed() { return codemed; }
+    public void setCodemed(String codemed) { this.codemed = codemed; }
 
     public String getNom() { return nom; }
     public void setNom(String nom) { this.nom = nom; }

@@ -76,7 +76,7 @@ public class PatientServlet extends HttpServlet {
 
         if ("delete".equals(action)) {
             try {
-                Long id = Long.parseLong(request.getParameter("id"));
+                String id = request.getParameter("id");
                 boolean success = patientDAO.delete(id);
                 if (success)session.setAttribute("successMessage", "Patient supprimé avec succès !" );
                 else session.setAttribute("errorMessage", "Erreur lors de la suppression du patient."); 
@@ -97,12 +97,11 @@ public class PatientServlet extends HttpServlet {
         String sexe = request.getParameter("sexe");
         String adresse = request.getParameter("adresse");
 
-        Patient patient = new Patient(nom, prenom, sexe, adresse);
+        Patient patient = new Patient(idParam,nom, prenom, sexe, adresse);
         boolean success;
 
         try {
-            if (idParam != null && !idParam.isEmpty()) {
-                patient.setCodepat(Long.parseLong(idParam));
+            if ("update".equals(action)) {
                 success = patientDAO.update(patient);
                 if (success)session.setAttribute("successMessage",  "Patient mis à jour avec succès !"  );
                 else session.setAttribute("errorMessage", "Erreur lors de la mise à jour du patient.");
