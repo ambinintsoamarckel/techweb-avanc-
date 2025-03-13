@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.mycompany.visitesmedical.models.Medecin" %>
 <jsp:useBean id="medecin" scope="request" type="com.mycompany.visitesmedical.models.Medecin"/>
-<%@ include file="includes/navbar.jsp" %>
 <html>
 <head>
     <title>Formulaire Médecin</title>

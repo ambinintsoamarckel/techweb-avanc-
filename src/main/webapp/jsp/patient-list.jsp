@@ -120,23 +120,23 @@
                                 <td><%= p.getSexe() %></td>
                                 <td><%= p.getAdresse() %></td>
                                 <td>
-                                    <button class="btn btn-warning btn-sm btn-edit" 
+                                    <button class="btn btn-sm btn-edit" 
                                             data-id="<%= p.getCodepat() %>"
                                             data-nom="<%= p.getNom() %>" 
                                             data-sexe="<%= p.getSexe() %>"
                                             data-prenom="<%= p.getPrenom() %>" 
                                             data-adresse="<%= p.getAdresse() %>">
-                                        <i class="bi bi-pencil-fill"></i>
+                                        <i class="bi bi-pencil-fill text-success fs-5"></i>
                                     </button>
-                                    <button class="btn btn-danger btn-sm btn-delete" 
+                                    <button class="btn btn-sm btn-delete" 
                                             data-id="<%= p.getCodepat() %>">
-                                        <i class="bi bi-trash-fill"></i>
+                                        <i class="bi bi-trash-fill text-danger fs-5"></i>
                                     </button>
-                                     <button class="btn btn-success btn-sm btn-add-visite" 
+                                     <button class="btn btn-sm btn-add-visite" 
 								            data-id="<%= p.getCodepat() %>"
 								            data-nom="<%= p.getNom() %>" 
 								            data-prenom="<%= p.getPrenom() %>">
-								        <i class="bi bi-calendar-plus"></i>
+								        <i class="bi bi-calendar-plus text-info fs-5"></i>
 								    </button>
                                 </td>
                             </tr>

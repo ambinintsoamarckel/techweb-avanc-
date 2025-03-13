@@ -106,16 +106,16 @@
                                 <td><%= m.getPrenom() %></td>
                                 <td><%= m.getGrade() %></td>
                                 <td>
-                                    <button class="btn btn-warning btn-sm btn-edit" 
+                                    <button class="btn btn-sm btn-edit" 
                                             data-id="<%= m.getCodemed() %>"
                                             data-nom="<%= m.getNom() %>" 
                                             data-prenom="<%= m.getPrenom() %>" 
                                             data-grade="<%= m.getGrade() %>">
-                                        <i class="bi bi-pencil-fill"></i>
+                                        <i class="bi bi-pencil-fill text-success fs-5"></i>
                                     </button>
-                                    <button class="btn btn-danger btn-sm btn-delete" 
+                                    <button class="btn btn-sm btn-delete" 
                                             data-id="<%= m.getCodemed() %>">
-                                        <i class="bi bi-trash-fill"></i>
+                                        <i class="bi bi-trash-fill text-danger fs-5"></i>
                                     </button>
                                 </td>
                             </tr>
