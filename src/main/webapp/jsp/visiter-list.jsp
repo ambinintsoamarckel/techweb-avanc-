@@ -63,7 +63,7 @@ if (visites == null) visites = new ArrayList<>();
     </nav>
 
     <div class="container mt-4">
-        <h1 class="text-center text-primary"><i class="bi bi-calendar-check"></i> Visites Médicales</h1>
+        <h1 class="text-center text-primary mt-5 mb-5"><i class="bi bi-calendar-check"></i> Visites Médicales</h1>
 
  <!-- Filtres -->
     <div class="row mb-3">

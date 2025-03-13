@@ -56,7 +56,7 @@
     </nav>
 
     <div class="container mt-4">
-        <h1 class="text-center text-primary"><i class="bi bi-clipboard-heart"></i> Liste des Médecins</h1>
+        <h1 class="text-center text-primary mt-5 mb-5"><i class="bi bi-clipboard-heart"></i> Liste des Médecins</h1>
 
         <!-- Notifications -->
         <div id="notifications">
@@ -78,11 +78,11 @@
         </div>
 
         <!-- Bouton Ajouter un médecin -->
-        <div class="d-flex justify-content-end mb-3">
-            <button class="btn btn-primary btn-custom" id="btn-add">
-                <i class="bi bi-person-plus-fill"></i> Ajouter un médecin
-            </button>
-        </div>
+        <div class="d-flex justify-content-start mb-3">
+		    <button class="btn btn-success btn-custom" id="btn-add">
+		        <i class="bi bi-plus-circle"></i> Nouveau
+		    </button>
+		</div>
 
         <!-- Tableau des médecins -->
         <div class="table-responsive">

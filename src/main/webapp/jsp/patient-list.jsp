@@ -55,7 +55,7 @@
     </nav>
 
     <div class="container mt-4">
-        <h1 class="text-center text-primary"><i class="bi bi-people"></i> Liste des Patients</h1>
+        <h1 class="text-center text-primary mt-5 mb-5"><i class="bi bi-people"></i> Liste des Patients</h1>
          <!-- Filtres -->
 		<div class="row mb-3">
 		    <div class="col-md-5">
@@ -91,11 +91,11 @@
             <% } %>
         </div>
 
-        <div class="d-flex justify-content-end mb-3">
-            <button class="btn btn-primary btn-custom" id="btn-add">
-                <i class="bi bi-person-plus-fill"></i> Ajouter un patient
-            </button>
-        </div>
+        <div class="d-flex justify-content-start mb-3">
+		    <button class="btn btn-success btn-custom" id="btn-add">
+		        <i class="bi bi-plus-circle"></i> Nouveau
+		    </button>
+		</div>
 
         <div class="table-responsive">
             <table class="table table-bordered table-hover text-center">
