@@ -43,13 +43,13 @@ public class PatientServlet extends HttpServlet {
                     out.println("<td>" + p.getSexe() + "</td>");
                     out.println("<td>" + p.getAdresse() + "</td>");
                     out.println("<td>");
-                    out.println("<button class='btn btn-warning btn-sm btn-edit' data-id='" + p.getCodepat() + "' data-nom='" + p.getNom() + "' data-sexe='" + p.getSexe() + "' data-prenom='" + p.getPrenom() + "' data-adresse='" + p.getAdresse() + "'>");
-                    out.println("<i class='bi bi-pencil-fill'></i></button>");
-                    out.println("<button class='btn btn-danger btn-sm btn-delete' data-id='" + p.getCodepat() + "'>");
-                    out.println("<i class='bi bi-trash-fill'></i></button>");
+                    out.println("<button class='btn btn-sm btn-edit' data-id='" + p.getCodepat() + "' data-nom='" + p.getNom() + "' data-sexe='" + p.getSexe() + "' data-prenom='" + p.getPrenom() + "' data-adresse='" + p.getAdresse() + "'>");
+                    out.println("<i class='bi bi-pencil-fill text-warning fs-5'></i></button>");
                     // Ajout du bouton pour ajouter une visite
-                    out.println("<button class='btn btn-success btn-sm btn-add-visite' data-id='" + p.getCodepat() + "' data-nom='" + p.getNom() + "' data-prenom='" + p.getPrenom() + "'>");
-                    out.println("<i class='bi bi-calendar-plus'></i></button>");
+                    out.println("<button class='btn btn-sm btn-add-visite' data-id='" + p.getCodepat() + "' data-nom='" + p.getNom() + "' data-prenom='" + p.getPrenom() + "'>");
+                    out.println("<i class='bi bi-calendar-plus text-info fs-5'></i></button>");
+                    out.println("<button class='btn btn-sm btn-delete' data-id='" + p.getCodepat() + "'>");
+                    out.println("<i class='bi bi-trash-fill text-danger fs-5'></i></button>");
                     out.println("</td>");
                     out.println("</tr>");
                 }
