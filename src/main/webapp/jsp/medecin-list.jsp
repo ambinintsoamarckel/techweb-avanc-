@@ -111,7 +111,7 @@
                                             data-nom="<%= m.getNom() %>" 
                                             data-prenom="<%= m.getPrenom() %>" 
                                             data-grade="<%= m.getGrade() %>">
-                                        <i class="bi bi-pencil-fill text-success fs-5"></i>
+                                        <i class="bi bi-pencil-fill text-warning fs-5"></i>
                                     </button>
                                     <button class="btn btn-sm btn-delete" 
                                             data-id="<%= m.getCodemed() %>">
@@ -151,7 +151,10 @@
                             <label class="form-label">Grade</label>
                             <input type="text" name="grade" id="grade" class="form-control" required>
                         </div>
-                        <button type="submit" class="btn btn-success">Enregistrer</button>
+                        <div class="d-flex justify-content-end gap-2">
+	                        <button type="submit" class="btn btn-success w-25">Enregistrer</button>
+	                        <button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Annuler</button>
+                    	</div>
                     </form>
                 </div>
             </div>

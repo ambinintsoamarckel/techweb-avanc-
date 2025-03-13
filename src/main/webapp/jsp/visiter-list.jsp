@@ -90,7 +90,7 @@ if (visites == null) visites = new ArrayList<>();
             </select>
         </div>
         <div class="col-md-2">
-            <button id="btnFiltrer" class="btn btn-primary w-100">
+            <button id="btnFiltrer" class="btn btn-primary w-50">
                 <i class="bi bi-funnel"></i> Filtrer
             </button>
         </div>
@@ -114,12 +114,12 @@ if (visites == null) visites = new ArrayList<>();
             <% } %>
         </div>
 
-        <!-- Bouton Ajouter une visite -->
-        <div class="d-flex justify-content-end mb-3">
-            <button class="btn btn-success btn-custom" id="btn-add">
-                <i class="bi bi-plus-circle"></i> Ajouter une visite
-            </button>
-        </div>
+		<!-- Bouton Ajouter une visite -->
+		<div class="d-flex justify-content-start mb-3">
+		    <button class="btn btn-success btn-custom" id="btn-add">
+		        <i class="bi bi-plus-circle"></i> Nouveau
+		    </button>
+		</div>
 
         <!-- Liste des visites -->
         <div class="row">
@@ -131,13 +131,13 @@ if (visites == null) visites = new ArrayList<>();
                             <p class="card-text"><i class="bi bi-stethoscope"></i> <%= v.getMedecin().getNom() %> <%= v.getMedecin().getPrenom() %></p>
                             <p class="card-text"><i class="bi bi-calendar"></i> <%= v.getDateTime().format(formatter) %></p>
                             <div class="d-flex justify-content-between">
-                                <button class="btn btn-warning btn-sm btn-edit" data-medecin="<%= v.getMedecin().getCodemed() %>"
+                                <button class="btn btn-warning btn-sm btn-edit text-white" data-medecin="<%= v.getMedecin().getCodemed() %>"
                                             data-patient="<%= v.getPatient().getCodepat() %>" 
                                             data-date="<%= v.getDateTime().format(formatter) %>"><i class="bi bi-pencil-fill"></i> Modifier</button>
                                 <button class="btn btn-danger btn-sm btn-delete" data-medecin="<%= v.getMedecin().getCodemed() %>"
                                             data-patient="<%= v.getPatient().getCodepat() %>" 
                                             data-date="<%= v.getDateTime().format(formatter) %>"><i class="bi bi-trash-fill"  ></i> Supprimer</button>
-                               <button class="btn btn-info btn-sm btn-details"
+                               <button class="btn btn-info btn-sm btn-details text-white"
 								    data-patient-nom="<%= v.getPatient().getNom() + " " + v.getPatient().getPrenom() %>"
 								    data-patient-sexe="<%= v.getPatient().getSexe() %>"
 								    data-patient-adresse="<%= v.getPatient().getAdresse() %>"
@@ -188,7 +188,10 @@ if (visites == null) visites = new ArrayList<>();
 <!--                         <label class="form-label">Date</label> -->
 <!--                         <input type="date" class="form-control" name="dateVisite" id="dateVisite" required> -->
 <!--                     </div> -->
-                    <button type="submit" class="btn btn-success" id="modalButton">Enregistrer</button>
+                    <div class="d-flex justify-content-end gap-2">
+                    	<button type="submit" class="btn btn-success w-25">Enregistrer</button>
+                    	<button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Annuler</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -225,8 +228,10 @@ if (visites == null) visites = new ArrayList<>();
 				            <% } %>
 				        </select>
 				    </div>
-
-				    <button type="submit" class="btn btn-success">Enregistrer</button>
+					<div class="d-flex justify-content-end gap-2">
+						<button type="submit" class="btn btn-success w-25">Enregistrer</button>
+						<button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Annuler</button>
+                    </div>
 				</form>
             </div>
         </div>

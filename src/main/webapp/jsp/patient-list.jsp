@@ -126,18 +126,18 @@
                                             data-sexe="<%= p.getSexe() %>"
                                             data-prenom="<%= p.getPrenom() %>" 
                                             data-adresse="<%= p.getAdresse() %>">
-                                        <i class="bi bi-pencil-fill text-success fs-5"></i>
+                                        <i class="bi bi-pencil-fill text-warning fs-5"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-delete" 
-                                            data-id="<%= p.getCodepat() %>">
-                                        <i class="bi bi-trash-fill text-danger fs-5"></i>
-                                    </button>
-                                     <button class="btn btn-sm btn-add-visite" 
+                                    <button class="btn btn-sm btn-add-visite" 
 								            data-id="<%= p.getCodepat() %>"
 								            data-nom="<%= p.getNom() %>" 
 								            data-prenom="<%= p.getPrenom() %>">
 								        <i class="bi bi-calendar-plus text-info fs-5"></i>
 								    </button>
+                                    <button class="btn btn-sm btn-delete" 
+                                            data-id="<%= p.getCodepat() %>">
+                                        <i class="bi bi-trash-fill text-danger fs-5"></i>
+                                    </button>
                                 </td>
                             </tr>
                         <% }
@@ -199,7 +199,10 @@
                             <label class="form-label">Adresse</label>
                             <input type="text" id="adresse" name="adresse" class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                        <div class="d-flex justify-content-end gap-2">
+	                        <button type="submit" class="btn btn-success w-25">Enregistrer</button>
+	                        <button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Annuler</button>
+                    	</div>
                     </form>
                 </div>
             </div>
