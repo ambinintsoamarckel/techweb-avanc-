@@ -211,7 +211,48 @@
             </div>
         </div>
     </div>
-    
+        <!-- Modal de modification -->
+    <div class="modal fade" id="patientModalm" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modifier un Patient</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="patient?action=update" method="post">
+                        <div class="mb-3">
+                        <label class="form-label">Code Patient</label>
+                        <input type="text" id="codepatm" name="codepat"  class="form-control" required readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nom</label>
+                            <input type="text" id="nomm" name="nom" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Prénom</label>
+                            <input type="text" id="prenomm" name="prenom" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Sexe</label>
+                            <select id="sexem" name="sexe" class="form-select">
+                                <option value="Homme">Homme</option>
+                                <option value="Femme">Femme</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Adresse</label>
+                            <input type="text" id="adressem" name="adresse" class="form-control">
+                        </div>
+                        <div class="d-flex justify-content-end gap-2">
+	                        <button type="submit" class="btn btn-success w-25">Enregistrer</button>
+	                        <button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Annuler</button>
+                    	</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Modal d'ajout de visite -->
 <div class="modal fade" id="addVisiteModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
@@ -251,46 +292,64 @@
 </div>
 
     <script>
+    function attachEventListeners() {
+        // Gestion du bouton d'édition
+        document.querySelectorAll(".btn-edit").forEach(button => {
+            button.addEventListener("click", function () {
+                document.getElementById("codepat").value = this.dataset.id;
+                document.getElementById("nom").value = this.dataset.nom;
+                document.getElementById("prenom").value = this.dataset.prenom;
+                document.getElementById("sexe").value = this.dataset.sexe;
+                document.getElementById("adresse").value = this.dataset.adresse;
+                new bootstrap.Modal(document.getElementById("patientModal")).show();
+            });
+        });
+        document.querySelectorAll('.btn-add-visite').forEach(button => {
+            button.addEventListener('click', function() {
+                document.getElementById('patientId').value = this.dataset.id;
+                document.getElementById('patientNomPrenom').value = this.dataset.nom + ' ' + this.dataset.prenom;
+                
+                new bootstrap.Modal(document.getElementById('addVisiteModal')).show();
+            });
+        });
+
+        // Gestion du bouton de suppression
+        document.querySelectorAll(".btn-delete").forEach(button => {
+            button.addEventListener("click", function () {
+                document.getElementById("deleteId").value = this.dataset.id;
+                new bootstrap.Modal(document.getElementById("deleteModal")).show();
+            });
+        });
+    }
+
+    // Fonction pour filtrer les patients
     function filtrerPatients() {
-        let valeurRecherchee = document.getElementById('fi').value;
-        let critere = document.getElementById('listeFiltre').value;
-
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', 'patient?action=search&critere=' + critere + '&valeur=' + encodeURIComponent(valeurRecherchee), true);
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                document.querySelector("tbody").innerHTML = xhr.responseText;
-            }
-        };
-
-        xhr.send();
+        let filtre = document.getElementById("listeFiltre").value;
+        let valeur = document.getElementById("fi").value;
+        
+        fetch("patient?action=search&critere=" + filtre + "&valeur=" + valeur)
+            .then(response => response.text())
+            .then(data => {
+                document.querySelector("tbody").innerHTML = data;
+                attachEventListeners(); // Réattacher les événements après mise à jour
+            })
+            .catch(error => console.error("Erreur lors du filtrage :", error));
     }
 
     document.addEventListener("DOMContentLoaded", function() {
+    	   attachEventListeners();
         document.querySelectorAll('.btn-edit').forEach(button => {
             button.addEventListener('click', function() {
-                document.getElementById('codepat').value = this.dataset.id;
-                document.getElementById('nom').value = this.dataset.nom;
-                document.getElementById('sexe').value = this.dataset.sexe;
-                document.getElementById('prenom').value = this.dataset.prenom;
-                document.getElementById('adresse').value = this.dataset.adresse;
+                document.getElementById('codepatm').value = this.dataset.id;
+                document.getElementById('nomm').value = this.dataset.nom;
+                document.getElementById('sexem').value = this.dataset.sexe;
+                document.getElementById('prenomm').value = this.dataset.prenom;
+                document.getElementById('adressem').value = this.dataset.adresse;
                 document.querySelector('.modal-title').innerText = 'Modifier un Patient';
-                new bootstrap.Modal(document.getElementById('patientModal')).show();
+                new bootstrap.Modal(document.getElementById('patientModalm')).show();
             });
         });
-        document.getElementById("fi").addEventListener("input", function () {
-            let critere = document.getElementById("listeFiltre").value;
-            let valeur = this.value;
 
-            if (critere === "codepat") {
-                // Accepter uniquement les chiffres
-                this.value = valeur.replace(/\D/g, "");
-            } else if (critere === "nom") {
-                // Accepter uniquement les lettres et espaces
-                this.value = valeur.replace(/[^a-zA-ZÀ-ÿ\s]/g, "");
-            }
-        });
         document.querySelectorAll('.btn-add-visite').forEach(button => {
             button.addEventListener('click', function() {
                 document.getElementById('patientId').value = this.dataset.id;

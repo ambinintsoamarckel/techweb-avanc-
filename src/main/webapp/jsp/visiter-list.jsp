@@ -84,7 +84,7 @@ if (visites == null) visites = new ArrayList<>();
                 <option value="">Tout les médecins</option>
                 <% for (Medecin m : medecins) { %>
                     <option value="<%= m.getCodemed() %>"
-                        <%= (medecinParam != null && medecinParam.equals(m.getCodemed()) ? "selected" : "" %>>
+                        <%= (medecinParam != null && medecinParam.equals(m.getCodemed())) ? "selected" : "" %>>
                         <%= m.getNom() %> <%= m.getPrenom() %>
                     </option>
                 <% } %>

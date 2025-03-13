@@ -163,6 +163,42 @@
             </div>
         </div>
     </div>
+        <!-- Modal Modification -->
+    <div class="modal fade" id="medecinModalm" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modifier un Médecin</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="medecin?action=update" method="post">
+                     	<div class="mb-3">
+                     	<label class="form-label">Code Médecin</label>
+                        <input type="text" name="codemed" id="codemedm" class="form-control" required readonly>
+
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nom</label>
+                            <input type="text" name="nom" id="nomm" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Prénom</label>
+                            <input type="text" name="prenom" id="prenomm" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Grade</label>
+                            <input type="text" name="grade" id="gradem" class="form-control" required>
+                        </div>
+                        <div class="d-flex justify-content-end gap-2">
+	                        <button type="submit" class="btn btn-success w-25">Enregistrer</button>
+	                        <button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Annuler</button>
+                    	</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
         <!-- Modal Confirmation Suppression -->
     <div class="modal fade" id="deleteModal" tabindex="-1">
@@ -204,12 +240,12 @@
     });
     document.querySelectorAll('.btn-edit').forEach(button => {
         button.addEventListener('click', function() {
-            document.getElementById('codemed').value = this.dataset.id;
-            document.getElementById('nom').value = this.dataset.nom;
-            document.getElementById('prenom').value = this.dataset.prenom;
-            document.getElementById('grade').value = this.dataset.grade;
+            document.getElementById('codemedm').value = this.dataset.id;
+            document.getElementById('nomm').value = this.dataset.nom;
+            document.getElementById('prenomm').value = this.dataset.prenom;
+            document.getElementById('gradem').value = this.dataset.grade;
             document.querySelector('.modal-title').innerText = 'Modifier un Médecin';
-            new bootstrap.Modal(document.getElementById('medecinModal')).show();
+            new bootstrap.Modal(document.getElementById('medecinModalm')).show();
         });
     });
 
